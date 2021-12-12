@@ -9,20 +9,18 @@ from utilities.utility import get_input_str
 filename = os.path.join(dir_path, 'input.txt')
 report = get_input_str(filename)
 
-l = len(report[0])
-if len(report) > 16:
-    print(f"This method doesn't work if the number of lines ({len(report)}) is greater than 16")
-    exit()
+l = len(report)
+b = len(report[0])
 
-# Sum all the bits column-wise: I know then number of 1's in every column
-sum = 0
+bites = arr.array('I', [0] * b)
 for line in report:
-    sum += int(line, 16)
+    for i, c in enumerate(line):
+        bites[i] += int(c)
 
 # Transform the sum in binary number as requested
 gamma = ''
-for i in hex(sum)[2:]:
-    if int(i) > l:
+for i in bites:
+    if int(i) > l/2:
         gamma += '1'
     else:
         gamma += '0'
@@ -31,8 +29,8 @@ gamma = int(gamma, 2)
 
 # Compute the 1's complement of gamma
 # https://www.tutorialspoint.com/find-one-s-complement-of-an-integer-in-cplusplus
-ones = ((1 << l) - 1) # ((2**l) - 1)
+ones = ((1 << b) - 1) # ((2**l) - 1)
 epsilon = ones ^ gamma # bitwise xor
 
 power_cons = gamma * epsilon
-print("power_cons", power_cons)
+print(power_cons)
