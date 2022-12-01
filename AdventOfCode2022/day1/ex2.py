@@ -16,4 +16,8 @@ for calories in list:
         food.append(inventory)
         inventory = 0
 
-print(max(food))
+first = max(food)
+food.remove(first)
+second = max(food)
+food.remove(second)
+print(first + second + max(food))
