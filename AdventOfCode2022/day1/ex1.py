@@ -2,8 +2,19 @@ import os, sys
 
 dir_path = os.path.abspath(os.path.dirname(__file__))
 sys.path.append(os.path.join(dir_path, '..'))
-from utilities.utility import get_input_int
+from utilities.utility import get_input_str
 
 filename = os.path.join(dir_path, 'input.txt')
-measurements = get_input_int(filename)
+list = get_input_str(filename)
 
+print(list)
+inventory = 0
+food = []
+for calories in list:
+    if calories != '':
+        inventory += int(calories)
+    else:
+        food.append(inventory)
+        inventory = 0
+
+print(max(food))
