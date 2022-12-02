@@ -4,6 +4,7 @@ dir_path = os.path.abspath(os.path.dirname(__file__))
 sys.path.append(os.path.join(dir_path, '..'))
 from utilities.utility import get_input_str
 
+#filename = os.path.join(dir_path, 'input_test.txt')
 filename = os.path.join(dir_path, 'input.txt')
 list = get_input_str(filename)
 
