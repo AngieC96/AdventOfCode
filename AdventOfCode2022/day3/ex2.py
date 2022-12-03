@@ -9,14 +9,17 @@ filename = os.path.join(dir_path, 'input.txt')
 lista = get_input_str(filename)
 
 priority = 0
-for rucksack in lista:
-    first, second = rucksack[ : len(rucksack) // 2], rucksack[len(rucksack) // 2 : ]
+for i in range(0, len(lista), 3):
     d = dict()
-    for item in first:
+    d2 = dict()
+    for item in lista[i]:
         d[item] = (ord(item) - 33) % 58 - 5
-    for item in second:
+    for item in lista[i+1]:
         if item in d:
-            priority += d[item]
+            d2[item] = d[item]
+    for item in lista[i+2]:
+        if item in d2:
+            priority += d2[item]
             break
 
 print(priority)
